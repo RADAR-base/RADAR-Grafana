@@ -15,6 +15,8 @@ GRAFANA_PASSWORD=myGrafanaPassword
 GRAFANA_URL=http://localhost:3000/
 ```
 
+Then, copy `docker/sink-timescale.properties.template` to `docker/sink-timescale.properties` and enter your database connection URL, username, and password.
+
 Now you can run the stack using
 
 ```shell
