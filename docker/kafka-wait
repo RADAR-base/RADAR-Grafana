@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Check if variables exist
 if [ -z "$CONNECT_ZOOKEEPER_CONNECT" ]; then
     echo "CONNECT_ZOOKEEPER_CONNECT is not defined"
