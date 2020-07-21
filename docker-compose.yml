@@ -227,7 +227,7 @@ services:
   #     - ./grafana/:/etc/grafana/provisioning/
 
   #---------------------------------------------------------------------------#
-  # Custom Docker Image                                                       #
+  # RADAR Docker Image                                                       #
   #---------------------------------------------------------------------------#
   grafana:
     image: radar-grafana
