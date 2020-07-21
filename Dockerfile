@@ -22,9 +22,11 @@ RUN if [ ! -z "${GF_INSTALL_PLUGINS}" ]; then \
     done; \
     fi
 
-COPY ./grafana /etc/grafana/provisioning
+ENV GF_PATHS_PROVISIONING="/etc/grafana/provisioning"
+
+COPY ./grafana "$GF_PATHS_PROVISIONING"
 
 ENV GF_USERS_DEFAULT_THEME="light"
 
-ENV GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH='/etc/grafana/provisioning/dashboards/home.json'
+ENV GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH='${GF_PATHS_PROVISIONING}/dashboards/home.json'
 
