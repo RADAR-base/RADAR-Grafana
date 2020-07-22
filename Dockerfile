@@ -7,7 +7,7 @@ USER root
 ENV GF_PATHS_PLUGINS="/var/lib/grafana-plugins"
 
 RUN mkdir -p "$GF_PATHS_PLUGINS" && \
-    chown -R 472:472 "$GF_PATHS_PLUGINS"
+    chown -R grafana:grafana "$GF_PATHS_PLUGINS"
 
 USER grafana
 
