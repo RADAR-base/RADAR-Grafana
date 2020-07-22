@@ -149,7 +149,7 @@ services:
   # RADAR JDBC connector                                                     #
   #---------------------------------------------------------------------------#
   radar-jdbc-connector:
-    image: mpgxvii/radar-jdbc-connector:latest
+    image: radarbase/radar-jdbc-connector:dev
     restart: on-failure
     volumes:
       - ./docker/sink-timescale.properties:/etc/kafka-connect/sink-timescale.properties
@@ -199,43 +199,15 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   #---------------------------------------------------------------------------#
-  # Official Grafana Image                                                     #
-  #---------------------------------------------------------------------------#
-  # # Comment out to use
-  #
-  # grafana:
-  #   image: grafana/grafana:7.1.0-beta1
-  #   depends_on:
-  #     - timescaledb
-  #     - radar-jdbc-connector
-  #   user: '1000'
-  #   environment:
-  #     GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
-  #     GF_SERVER_ROOT_URL: ${GRAFANA_URL}
-  #     GF_USERS_VIEWERS_CAN_EDIT: 'true'
-  #     GF_INSTALL_PLUGINS: 'flant-statusmap-panel'
-  #     GF_USERS_DEFAULT_THEME: light
-  #     GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: '/etc/grafana/provisioning/dashboards/home.json'
-  #     POSTGRES_DB: ${POSTGRES_DB}
-  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-  #     POSTGRES_HOST: timescaledb:5432
-  #   ports:
-  #     - '3001:3000'
-  #   volumes:
-  #     - grafana-lib:/var/lib/grafana
-  #     - grafana-log:/var/log/grafana
-  #     - ./grafana/:/etc/grafana/provisioning/
-
-  #---------------------------------------------------------------------------#
   # RADAR Docker Image                                                       #
   #---------------------------------------------------------------------------#
   grafana:
-    image: radar-grafana
+    image: radarbase/radar-grafana:dev
     build: .
     depends_on:
       - timescaledb
       - radar-jdbc-connector
-    user: '0'
+    user: '1000'
     environment:
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
       GF_SERVER_ROOT_URL: ${GRAFANA_URL}
